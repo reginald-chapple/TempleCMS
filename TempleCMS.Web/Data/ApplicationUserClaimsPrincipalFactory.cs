@@ -30,7 +30,7 @@ namespace TempleCMS.Web.Data
             identity.AddClaim(new Claim("FullName", user.FullName));
             identity.AddClaim(new Claim("FirstName", user.FullName.Split(" ")[0]));
             identity.AddClaim(new Claim("FirstInitial", user.FullName[..1]));
-            identity.AddClaim(new Claim("ProfileImage", user.ProfileImage));
+            identity.AddClaim(new Claim("Image", user.Image));
             
             return identity;
         }
