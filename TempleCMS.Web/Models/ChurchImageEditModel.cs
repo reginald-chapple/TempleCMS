@@ -1,0 +1,16 @@
+using System.ComponentModel.DataAnnotations.Schema;
+using TempleCMS.Web.Infrastructure.Validation;
+
+namespace TempleCMS.Web.Models
+{
+    public class ChurchImageEditModel
+    {
+        public long Id { get; set; }
+        
+        public string Image { get; set; } = "noimage.png";
+
+        [NotMapped]
+        [FileExtension]
+        public IFormFile? ImageUpload { get; set; }
+    }
+}

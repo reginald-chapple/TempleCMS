@@ -14,13 +14,14 @@ namespace TempleCMS.Web.Data
     public class ApplicationUserClaimsPrincipalFactory : UserClaimsPrincipalFactory<ApplicationUser, ApplicationRole>
     {
         private readonly ApplicationDbContext _context;
-        // private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public ApplicationUserClaimsPrincipalFactory(ApplicationDbContext context,
             UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, IOptions<IdentityOptions> options) : 
             base(userManager, roleManager, options)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         protected override async Task<ClaimsIdentity> GenerateClaimsAsync(ApplicationUser user)
@@ -31,6 +32,15 @@ namespace TempleCMS.Web.Data
             identity.AddClaim(new Claim("FirstName", user.FullName.Split(" ")[0]));
             identity.AddClaim(new Claim("FirstInitial", user.FullName[..1]));
             identity.AddClaim(new Claim("Image", user.Image));
+
+            if (await _userManager.IsInRoleAsync(user, "Leadership"))
+            {
+                var churchId = _context.ChurchMembers
+                    .Where(c => c.UserId == user.Id && c.Role == ChurchRole.Leader)
+                    .Select(c => c.ChurchId)
+                    .First();
+                identity.AddClaim(new Claim("ChurchId", churchId.ToString()));
+            }
             
             return identity;
         }

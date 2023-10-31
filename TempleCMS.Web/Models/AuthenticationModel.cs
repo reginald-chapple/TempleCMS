@@ -9,7 +9,9 @@ namespace TempleCMS.Web.Models
     public class AuthenticationModel
     {
         [Required]
-        public string UserName { get; set; } = string.Empty;
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; } = string.Empty;
 
         [DataType(DataType.Password), Required, MinLength(4, ErrorMessage = "Minimum length is 4")]
         public string Password { get; set; } = string.Empty;

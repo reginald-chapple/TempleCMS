@@ -158,6 +158,10 @@ namespace TempleCMS.Web.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("tinyint(1)");
 
@@ -181,16 +185,8 @@ namespace TempleCMS.Web.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("ProfileImage")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("longtext");
-
-                    b.Property<string>("Slug")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("tinyint(1)");
@@ -200,8 +196,6 @@ namespace TempleCMS.Web.Data.Migrations
                         .HasColumnType("varchar(256)");
 
                     b.HasKey("Id");
-
-                    b.HasAlternateKey("Slug");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -226,6 +220,80 @@ namespace TempleCMS.Web.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.Belief", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ChurchId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Details")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChurchId");
+
+                    b.ToTable("Beliefs");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.Booking", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DateBooked")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DateDesired")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Details")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("IsAccepted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsCancelled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<long>("ServiceId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServiceId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("TempleCMS.Web.Domain.Chat", b =>
@@ -290,14 +358,184 @@ namespace TempleCMS.Web.Data.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(255)");
 
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int>("Role")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("ChatId", "UserId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("ChatUsers");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.Church", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Background")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<long>("DenominationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Mission")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DenominationId");
+
+                    b.ToTable("Churches");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.ChurchMember", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ChurchId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChurchId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("ChurchMembers");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.Denomination", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("Branch")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Denominations");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.Event", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ChurchId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Details")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("EndTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("IsFree")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("StartTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChurchId");
+
+                    b.ToTable("Event");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.EventUser", b =>
+                {
+                    b.Property<long>("EventId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("EventId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("EventUser");
                 });
 
             modelBuilder.Entity("TempleCMS.Web.Domain.Notification", b =>
@@ -319,6 +557,61 @@ namespace TempleCMS.Web.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Notifications");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.Position", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ChurchId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Responsibilities")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChurchId");
+
+                    b.ToTable("Positions");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.Service", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ChurchId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChurchId");
+
+                    b.ToTable("Services");
                 });
 
             modelBuilder.Entity("TempleCMS.Web.Domain.UserNotification", b =>
@@ -343,6 +636,57 @@ namespace TempleCMS.Web.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserNotifications");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.UserPosition", b =>
+                {
+                    b.Property<long>("PositionId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("PositionId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserPositions");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.Value", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ChurchId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Details")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChurchId");
+
+                    b.ToTable("Values");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -400,6 +744,36 @@ namespace TempleCMS.Web.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TempleCMS.Web.Domain.Belief", b =>
+                {
+                    b.HasOne("TempleCMS.Web.Domain.Church", "Church")
+                        .WithMany("Beliefs")
+                        .HasForeignKey("ChurchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Church");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.Booking", b =>
+                {
+                    b.HasOne("TempleCMS.Web.Domain.Service", "Service")
+                        .WithMany("Bookings")
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TempleCMS.Web.Domain.ApplicationUser", "User")
+                        .WithMany("Bookings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Service");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TempleCMS.Web.Domain.ChatMessage", b =>
                 {
                     b.HasOne("TempleCMS.Web.Domain.Chat", "Chat")
@@ -430,6 +804,88 @@ namespace TempleCMS.Web.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TempleCMS.Web.Domain.Church", b =>
+                {
+                    b.HasOne("TempleCMS.Web.Domain.Denomination", "Denomination")
+                        .WithMany("Churches")
+                        .HasForeignKey("DenominationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Denomination");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.ChurchMember", b =>
+                {
+                    b.HasOne("TempleCMS.Web.Domain.Church", "Church")
+                        .WithMany("Members")
+                        .HasForeignKey("ChurchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TempleCMS.Web.Domain.ApplicationUser", "User")
+                        .WithOne("Church")
+                        .HasForeignKey("TempleCMS.Web.Domain.ChurchMember", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Church");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.Event", b =>
+                {
+                    b.HasOne("TempleCMS.Web.Domain.Church", "Church")
+                        .WithMany("Events")
+                        .HasForeignKey("ChurchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Church");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.EventUser", b =>
+                {
+                    b.HasOne("TempleCMS.Web.Domain.Event", "Event")
+                        .WithMany("Users")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TempleCMS.Web.Domain.ApplicationUser", "User")
+                        .WithMany("Events")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Event");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.Position", b =>
+                {
+                    b.HasOne("TempleCMS.Web.Domain.Church", "Church")
+                        .WithMany("Position")
+                        .HasForeignKey("ChurchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Church");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.Service", b =>
+                {
+                    b.HasOne("TempleCMS.Web.Domain.Church", "Church")
+                        .WithMany("Services")
+                        .HasForeignKey("ChurchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Church");
+                });
+
             modelBuilder.Entity("TempleCMS.Web.Domain.UserNotification", b =>
                 {
                     b.HasOne("TempleCMS.Web.Domain.Notification", "Notification")
@@ -449,6 +905,36 @@ namespace TempleCMS.Web.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TempleCMS.Web.Domain.UserPosition", b =>
+                {
+                    b.HasOne("TempleCMS.Web.Domain.Position", "Position")
+                        .WithMany("Users")
+                        .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TempleCMS.Web.Domain.ApplicationUser", "User")
+                        .WithMany("Positions")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Position");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.Value", b =>
+                {
+                    b.HasOne("TempleCMS.Web.Domain.Church", "Church")
+                        .WithMany("Values")
+                        .HasForeignKey("ChurchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Church");
+                });
+
             modelBuilder.Entity("TempleCMS.Web.Domain.ApplicationRole", b =>
                 {
                     b.Navigation("UserRoles");
@@ -456,9 +942,17 @@ namespace TempleCMS.Web.Data.Migrations
 
             modelBuilder.Entity("TempleCMS.Web.Domain.ApplicationUser", b =>
                 {
+                    b.Navigation("Bookings");
+
                     b.Navigation("Chats");
 
+                    b.Navigation("Church");
+
+                    b.Navigation("Events");
+
                     b.Navigation("Notifications");
+
+                    b.Navigation("Positions");
 
                     b.Navigation("UserRoles");
                 });
@@ -470,9 +964,44 @@ namespace TempleCMS.Web.Data.Migrations
                     b.Navigation("Users");
                 });
 
+            modelBuilder.Entity("TempleCMS.Web.Domain.Church", b =>
+                {
+                    b.Navigation("Beliefs");
+
+                    b.Navigation("Events");
+
+                    b.Navigation("Members");
+
+                    b.Navigation("Position");
+
+                    b.Navigation("Services");
+
+                    b.Navigation("Values");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.Denomination", b =>
+                {
+                    b.Navigation("Churches");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.Event", b =>
+                {
+                    b.Navigation("Users");
+                });
+
             modelBuilder.Entity("TempleCMS.Web.Domain.Notification", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.Position", b =>
+                {
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("TempleCMS.Web.Domain.Service", b =>
+                {
+                    b.Navigation("Bookings");
                 });
 #pragma warning restore 612, 618
         }

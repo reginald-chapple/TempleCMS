@@ -2,7 +2,7 @@
 
 namespace TempleCMS.Web.Domain
 {
-    public class ChatUser
+    public class ChatUser : Entity
     {
         public string UserId { get; set; } = string.Empty;
         public virtual ApplicationUser? User { get; set; }

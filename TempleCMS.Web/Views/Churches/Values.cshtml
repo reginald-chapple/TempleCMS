@@ -1,0 +1,51 @@
+@model Church
+
+@{
+    ViewData["Title"] = "Churches";
+}
+
+@section Stylesheets {
+<!-- <link href="~/vendors/flatpickr/flatpickr.min.css" rel="stylesheet"> -->
+}
+
+<div class="content mb-5">
+    <div class="card">
+        <div class="card-header border-bottom-0 pb-0">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h4 class="card-title mb-0"> 
+                            Values
+                        </h4>
+                    </div>
+                </div>
+                <div class="">
+                    <a class="btn btn-sm btn-phoenix-primary" role="button" asp-controller="Values" asp-action="Create">
+                        <span class="fas fa-plus"></span> Value
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="all-values" class="card-body">
+            @await Component.InvokeAsync("ValuesTable", new { churchId = Model.Id })
+        </div>
+        @* <div class="card-footer border-0">
+            <p>Footer</p>
+        </div> *@
+    </div>   
+
+    <partial name="_Footer" />
+</div>
+
+@section VendorScripts {
+<!-- <script src="~/vendors/echarts/echarts.min.js"></script> -->
+}
+
+@section CustomScripts {
+<!-- <script src="~/assets/js/project-details.js"></script> -->
+<script src="~/js/site.js"></script>
+<script>
+    $(document).ready(function () {
+    });
+</script>
+}

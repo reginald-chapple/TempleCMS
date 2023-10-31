@@ -17,10 +17,9 @@ namespace TempleCMS.Web.Data.Services
             .Where(u => u.Id == userId)
             .Select(u => new UserModel
             {
-                Slug = u.Slug,
                 Name = u.FullName,
                 UserName = u.UserName!,
-                Photo = u.ProfileImage
+                Photo = u.Image
             }).FirstOrDefault();
             
             return userModel!;

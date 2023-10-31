@@ -1,0 +1,13 @@
+@{
+    var profileImage = User.FindFirst("Image")!.Value;
+    var firstInitial = User.FindFirst("FirstInitial")!.Value;
+}
+
+@if (profileImage == "noimage.png" || profileImage == null || profileImage == "")
+{
+    <div class="avatar-name rounded-circle"><span>@firstInitial</span></div>
+}
+else
+{
+    <img class="rounded-circle" src="~/media/members/@profileImage" alt="" />
+}

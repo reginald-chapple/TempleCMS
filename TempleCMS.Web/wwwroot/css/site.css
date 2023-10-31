@@ -1,18 +1,19 @@
-html {
-  font-size: 14px;
+.details-img {
+  object-fit: cover; 
+  max-height: 280px;
+  min-height: 150px; 
+  object-position: top;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+input[name="MemberId"]:checked ~ .control-me {
+  background-color: #3874ff;
+  color: #fff;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.carmine {
+  color: #930F1C;
 }
 
-body {
-  margin-bottom: 60px;
+.carmine-bg {
+  background-color: rgb(147,15,28);
 }

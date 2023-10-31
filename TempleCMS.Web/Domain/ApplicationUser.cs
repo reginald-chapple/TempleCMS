@@ -8,7 +8,7 @@ namespace TempleCMS.Web.Domain
     public class ApplicationUser : IdentityUser<string>
     {
         public string FullName { get; set; } = string.Empty;
-
+        
         public string Image { get; set; } = "noimage.png";
 
         [NotMapped]
@@ -18,14 +18,13 @@ namespace TempleCMS.Web.Domain
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; } = DateTime.Parse("1/1/1901");
 
-        public AccountType Account { get; set; }
-
-        public virtual Member? Member { get; set; }
-
-        public virtual Clergy? Clergy { get; set; }
+        public virtual ChurchMember? Church { get; set; }
 
         public virtual ICollection<ApplicationUserRole> UserRoles { get; set; } = new List<ApplicationUserRole>();
         public virtual ICollection<UserNotification> Notifications { get; set; } = new List<UserNotification>();
         public virtual ICollection<ChatUser> Chats { get; set; } = new List<ChatUser>();
+        public virtual ICollection<EventUser> Events { get; set; } = new List<EventUser>();
+        public virtual ICollection<UserPosition> Positions { get; set; } = new List<UserPosition>();
+        public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
     }
 }

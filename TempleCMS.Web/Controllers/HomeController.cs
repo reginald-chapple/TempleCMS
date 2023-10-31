@@ -1,23 +1,44 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using TempleCMS.Web.Data;
+using TempleCMS.Web.Domain;
 using TempleCMS.Web.Models;
 
 namespace TempleCMS.Web.Controllers;
 
+[Route("[controller]")]
 public class HomeController : Controller
 {
+    private readonly ApplicationDbContext _context;
+    private readonly SignInManager<ApplicationUser> _signInManager;
+    private readonly UserManager<ApplicationUser> _userManager;
     private readonly ILogger<HomeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, ApplicationDbContext context)
     {
         _logger = logger;
+        _signInManager = signInManager;
+        _userManager = userManager;
+        _context = context;
     }
 
-    public IActionResult Index()
+    [Route("~/")]
+    public async Task<IActionResult> Index()
     {
+        if (_signInManager.IsSignedIn(HttpContext.User))
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            if (user != null && await _userManager.IsInRoleAsync(user, "Leadership"))
+            {
+                return RedirectToAction(nameof(ChurchesController.Office), "Churches", new { id = User.FindFirst("ChurchId")!.Value });
+            }
+        }
         return View();
     }
 
+    [Route("/Privacy")]
     public IActionResult Privacy()
     {
         return View();
@@ -29,3 +50,4 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
+

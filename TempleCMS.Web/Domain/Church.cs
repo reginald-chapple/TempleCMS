@@ -25,17 +25,14 @@ namespace TempleCMS.Web.Domain
         [FileExtension]
         public IFormFile? ImageUpload { get; set; }
 
-        public long LeaderId { get; set; }
-        public virtual Clergy? Leader { get; set; }
+        public long DenominationId { get; set; }
+        public virtual Denomination? Denomination { get; set; }
 
+        public virtual ICollection<Position> Position { get; set; } = new List<Position>();
         public virtual ICollection<Value> Values { get; set; } = new List<Value>();
         public virtual ICollection<Belief> Beliefs { get; set; } = new List<Belief>();
-        public virtual ICollection<Clergy> Clergies { get; set; } = new List<Clergy>();
-        public virtual ICollection<Member> Members { get; set; } = new List<Member>();
-        public virtual ICollection<WorshipService> WorshipServices { get; set; } = new List<WorshipService>();
-        public virtual ICollection<Conference> Conferences { get; set; } = new List<Conference>();
-        public virtual ICollection<Class> Classes { get; set; } = new List<Class>(); 
-        public virtual ICollection<Trip> Trips { get; set; } = new List<Trip>();
-        public virtual ICollection<Ceremony> Ceremonies { get; set; } = new List<Ceremony>();
+        public virtual ICollection<ChurchMember> Members { get; set; } = new List<ChurchMember>();
+        public virtual ICollection<Event> Events { get; set; } = new List<Event>();
+        public virtual ICollection<Service> Services { get; set; } = new List<Service>();
     }
 }
