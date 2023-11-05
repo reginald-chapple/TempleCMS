@@ -1,0 +1,28 @@
+@model Church
+
+@{
+    ViewData["Title"] = "Churches";
+}
+
+@section Stylesheets {
+<!-- <link href="~/vendors/flatpickr/flatpickr.min.css" rel="stylesheet"> -->
+}
+
+<div class="content mb-5">
+    @await Component.InvokeAsync("ChurchServiceForm", new { churchId = Model.Id })   
+    @await Component.InvokeAsync("ChurchServiceTable", new { churchId = Model.Id })
+    <partial name="_Footer" />
+</div>
+
+@section VendorScripts {
+<!-- <script src="~/vendors/echarts/echarts.min.js"></script> -->
+}
+
+@section CustomScripts {
+<!-- <script src="~/assets/js/project-details.js"></script> -->
+<script src="~/js/site.js"></script>
+<script>
+    $(document).ready(function () {
+    });
+</script>
+}

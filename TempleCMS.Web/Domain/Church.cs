@@ -28,7 +28,6 @@ namespace TempleCMS.Web.Domain
         public long DenominationId { get; set; }
         public virtual Denomination? Denomination { get; set; }
 
-        public virtual ICollection<Position> Position { get; set; } = new List<Position>();
         public virtual ICollection<Value> Values { get; set; } = new List<Value>();
         public virtual ICollection<Belief> Beliefs { get; set; } = new List<Belief>();
         public virtual ICollection<ChurchMember> Members { get; set; } = new List<ChurchMember>();

@@ -24,7 +24,6 @@ namespace TempleCMS.Web.Domain
         public virtual ICollection<UserNotification> Notifications { get; set; } = new List<UserNotification>();
         public virtual ICollection<ChatUser> Chats { get; set; } = new List<ChatUser>();
         public virtual ICollection<EventUser> Events { get; set; } = new List<EventUser>();
-        public virtual ICollection<UserPosition> Positions { get; set; } = new List<UserPosition>();
         public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
     }
 }

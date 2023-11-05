@@ -23,8 +23,8 @@ namespace TempleCMS.Web.Data
         public DbSet<Church> Churches { get; set; }
         public DbSet<ChurchMember> ChurchMembers { get; set; }
         public DbSet<Belief> Beliefs { get; set; }
-        public DbSet<Position> Positions { get; set; }
-        public DbSet<UserPosition> UserPositions { get; set; }
+        // public DbSet<Position> Positions { get; set; }
+        // public DbSet<UserPosition> UserPositions { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Value> Values { get; set; }
@@ -50,7 +50,7 @@ namespace TempleCMS.Web.Data
             builder.ApplyConfiguration(new ChatUserConfiguration());
             builder.ApplyConfiguration(new UserNotificationConfiguration());
             builder.ApplyConfiguration(new ChurchMemberConfiguration());
-            builder.ApplyConfiguration(new UserPositionConfiguration());
+            // builder.ApplyConfiguration(new UserPositionConfiguration());
             builder.ApplyConfiguration(new EventUserConfiguration());
         }
 

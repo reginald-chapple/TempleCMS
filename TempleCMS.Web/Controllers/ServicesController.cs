@@ -10,6 +10,7 @@ using TempleCMS.Web.Domain;
 
 namespace TempleCMS.Web.Controllers
 {
+    [Route("[controller]")]
     public class ServicesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -45,28 +46,22 @@ namespace TempleCMS.Web.Controllers
             return View(service);
         }
 
-        // GET: Services/Create
-        public IActionResult Create()
-        {
-            ViewData["ChurchId"] = new SelectList(_context.Churches, "Id", "Id");
-            return View();
-        }
-
-        // POST: Services/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Route("Create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Type,ChurchId")] Service service)
         {
             if (ModelState.IsValid)
             {
+                if (_context.Services.Any(s => s.Type == service.Type && s.ChurchId == service.ChurchId))
+                {
+                    return RedirectToAction(nameof(ChurchesController.Services), "Churches", new { id = service.ChurchId });
+                }
                 _context.Add(service);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ChurchesController.Services), "Churches", new { id = service.ChurchId });
             }
-            ViewData["ChurchId"] = new SelectList(_context.Churches, "Id", "Id", service.ChurchId);
-            return View(service);
+            return RedirectToAction(nameof(ChurchesController.Services), "Churches", new { id = service.ChurchId });
         }
 
         // GET: Services/Edit/5

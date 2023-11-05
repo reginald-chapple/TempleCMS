@@ -446,6 +446,42 @@ namespace TempleCMS.Web.Controllers
             
             return View(church);
         }
+
+        [Route("{id}/Members")]
+        public async Task<IActionResult> Members(long? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var church = await _context.Churches.FindAsync(id);
+
+            if (church == null)
+            {
+                return NotFound();
+            }
+            
+            return View(church);
+        }
+
+        [Route("{id}/Services")]
+        public async Task<IActionResult> Services(long? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var church = await _context.Churches.FindAsync(id);
+
+            if (church == null)
+            {
+                return NotFound();
+            }
+            
+            return View(church);
+        }
     
         [Route("{branch}/GetDenominations")]
         public async Task<JsonResult> GetDenominations(int branch)
