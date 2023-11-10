@@ -5,6 +5,7 @@ using TempleCMS.Web.Data;
 using TempleCMS.Web.Domain;
 using TempleCMS.Web.Models;
 using TempleCMS.Web.Infrastructure.Helpers;
+using TempleCMS.Web.Data.Services;
 
 namespace TempleCMS.Web.Controllers
 {
@@ -15,14 +16,14 @@ namespace TempleCMS.Web.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IFileService _fileService;
 
-        public AccountController(ApplicationDbContext context, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IWebHostEnvironment webHostEnvironment)
+        public AccountController(ApplicationDbContext context, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IFileService fileService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
-            _webHostEnvironment = webHostEnvironment;
+            _fileService = fileService;
         }
 
         [TempData]
@@ -44,29 +45,29 @@ namespace TempleCMS.Web.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                string uploadsDir = Path.Combine(_webHostEnvironment.WebRootPath, "media/members");
-                string imageName = Guid.NewGuid().ToString() + "_" + user.ImageUpload!.FileName;
-                string filePath = Path.Combine(uploadsDir, imageName);
-                
-                FileStream fs = new FileStream(filePath, FileMode.Create);
-                await user.ImageUpload.CopyToAsync(fs);
-                fs.Close();
 
                 ApplicationUser newUser = new ApplicationUser 
                 { 
                     Id = Guid.NewGuid().ToString(),
                     FullName = user.FullName,
-                    UserName = user.Email, 
+                    UserName = user.UserName, 
                     Email = user.Email,
-                    Image = imageName
+                    Image = await _fileService.ImageUpload(user.ImageUpload!, "members")
                 };
 
                 IdentityResult result = await _userManager.CreateAsync(newUser, user.Password);
 
-                await _userManager.AddToRoleAsync(newUser, "Member");
-
                 if (result.Succeeded)
                 {
+                    var group = new Group
+                    {
+                        Name = "Unnamed",
+                    };
+                    group.Members.Add(new GroupMember { MemberId = newUser.Id, Role = GroupRole.Leader });
+                    
+                    await _context.Groups.AddAsync(group);
+                    await _context.SaveChangesAsync();
+                    await _userManager.AddToRoleAsync(newUser, "Member");
                     await _signInManager.SignInAsync(newUser, isPersistent: false);
                     return RedirectToLocal(returnUrl!);
                 }
@@ -104,7 +105,7 @@ namespace TempleCMS.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(loginVM.Email, loginVM.Password, false, false);
+                var result = await _signInManager.PasswordSignInAsync(loginVM.UserName, loginVM.Password, false, false);
 
                 if (result.Succeeded)
                 {

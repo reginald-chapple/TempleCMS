@@ -33,18 +33,20 @@ namespace TempleCMS.Web.Controllers
         {
             if(ModelState.IsValid)
             {
-                var churchId = User.FindFirst("ChurchId")!.Value;
-
-                if (churchId == null)
+                if (User.FindFirst("GroupId")!.Value == null)
                 {
                     return RedirectToAction(nameof(AccountController.AccessDenied), "Account");
                 }
 
-                value.ChurchId = long.Parse(churchId);
+                long groupId = long.Parse(User.FindFirst("GroupId")!.Value);
 
-                await _context.AddAsync(value);
+                await _context.AddAsync(new GroupValue
+                {
+                    ValueId = value.Id,
+                    GroupId = groupId
+                });
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(ChurchesController.Values), "Churches", new { id = long.Parse(churchId) });
+                return RedirectToAction(nameof(HomeController.Index), "Home");
             }
             return View(value);
         }

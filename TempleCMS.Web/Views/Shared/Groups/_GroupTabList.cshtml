@@ -1,0 +1,24 @@
+@model Group
+
+<ul class="nav nav-underline deal-details scrollbar flex-nowrap w-100 pb-1 mb-3" id="myTab" role="tablist" style="overflow-y: hidden;">
+    <li class="nav-item text-nowrap me-2" role="presentation">
+        <a class="nav-link @Html.ActiveClass("GroupManager", "Index")" id="1-tab" asp-controller="GroupManager" asp-action="Index" asp-route-id="@Model.Id" role="tab" aria-controls="tab-1"> 
+            Group
+        </a>
+    </li>
+    <li class="nav-item text-nowrap me-2" role="presentation">
+        <a class="nav-link @Html.ActiveClass("GroupManager", "Image")" id="2-tab" asp-controller="GroupManager" asp-action="Image" asp-route-id="@Model.Id" role="tab" aria-controls="tab-2"> 
+            Image
+        </a>
+    </li>
+    <li class="nav-item text-nowrap me-2" role="presentation">
+        <a class="nav-link @Html.ActiveClass("GroupManager", "About")" id="3-tab" asp-controller="GroupManager" asp-action="About" asp-route-id="@Model.Id" role="tab" aria-controls="tab-3"> 
+            About
+        </a>
+    </li>
+    <li class="nav-item text-nowrap me-2" role="presentation">
+        <a class="nav-link @Html.ActiveClass("GroupManager", "Mission")" id="5-tab" asp-controller="GroupManager" asp-action="Mission" asp-route-id="@Model.Id" role="tab" aria-controls="tab-5"> 
+            Mission
+        </a>
+    </li>
+</ul>

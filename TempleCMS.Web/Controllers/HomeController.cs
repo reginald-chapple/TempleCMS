@@ -30,9 +30,9 @@ public class HomeController : Controller
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
 
-            if (user != null && await _userManager.IsInRoleAsync(user, "Leadership"))
+            if (user != null && await _userManager.IsInRoleAsync(user, "Member"))
             {
-                return RedirectToAction(nameof(ChurchesController.Office), "Churches", new { id = User.FindFirst("ChurchId")!.Value });
+                return RedirectToAction(nameof(DashboardController.Index), "Dashboard", new { id = user.Id });
             }
         }
         return View();

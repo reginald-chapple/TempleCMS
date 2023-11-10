@@ -12,32 +12,34 @@ namespace TempleCMS.Web.Domain
         [DataType(DataType.Text)]
         public string Details { get; set; } = string.Empty;
 
+        public string Location { get; set; } = string.Empty;
+
         public DateTime? StartTime { get; set; }
 
         public DateTime? EndTime { get; set; }
 
         public bool IsFree { get; set; }
 
-        public EventType Type { get; set; }
+        public EventCategory Category { get; set; }
 
-        public long ChurchId { get; set; }
-        public virtual Church? Church { get; set; }
+        public long GroupId { get; set; }
+        public virtual Group? Group { get; set; }
 
         public virtual ICollection<EventUser> Users { get; set; } = new List<EventUser>();
     }
 
-    public enum EventType
+    public enum EventCategory
     {
-        [Description("Booking")]
-        Booking,
-        [Description("Ceremony")]
-        Ceremony,
-        [Description("Class")]
-        Class,
-        [Description("Conference")]
-        Conference,
-        [Description("Liturgy")]
-        Liturgy,
+        [Description("Campaign")]
+        Campaign,
+        [Description("Celebration")]
+        Celebration,
+        [Description("Entertainment")]
+        Entertainment,
+        [Description("Food and Beverage")]
+        FoodBeverage,
+        [Description("Meetup")]
+        Meetup,
         [Description("Trip")]
         Trip
     }

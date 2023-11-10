@@ -13,9 +13,12 @@ namespace TempleCMS.Web.ViewComponents
             _context = context;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(long churchId)
+        public async Task<IViewComponentResult> InvokeAsync(long groupId)
         {
-            var values = await _context.Values.Where(b => b.ChurchId == churchId).ToListAsync();
+            var values = await _context.GroupValues
+                .Where(v => v.GroupId == groupId)
+                .Include(v => v.Value)
+                .ToListAsync();
             return View(values);
         }
     }

@@ -1,0 +1,29 @@
+@model VideoPostInputModel
+
+<div class="modal fade" id="videoPostModal" tabindex="-1" aria-labelledby="videoPostLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="videoPostLabel">Post video</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="video-post-form" method="post" asp-controller="Posts" asp-action="Video" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Body" class="control-label"></label>
+                        <textarea asp-for="Body" id="Body" class="form-control"></textarea>
+                        <span asp-validation-for="Body" class="text-danger"></span>
+                    </div>
+                    @* Add file field *@
+                    <input type="hidden" asp-for="GroupId" class ="form-control" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" form="video-post-form" class="btn btn-primary">Save now</button>
+                <button type="button" class="btn btn-phoenix-danger me-2" data-bs-dismiss="modal"> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

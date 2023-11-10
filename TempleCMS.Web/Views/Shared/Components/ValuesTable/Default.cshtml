@@ -1,4 +1,4 @@
-@model IEnumerable<Value>
+@model IEnumerable<GroupValue>
 
 <div class="table-responsive scrollbar mx-n1 px-1">
     <table class="table table-sm fs--1 churches-table">
@@ -27,7 +27,7 @@
                     <td class="align-middle white-space-nowrap fw-semi-bold text-1100 ps-1 py-0">
                         <div class="d-flex align-items-center position-relative">
                             <a class="text-1000 fw-bold stretched-link" href="#!">
-                                @item.Name
+                                @item.Value!.Name
                             </a>
                         </div>
                     </td>

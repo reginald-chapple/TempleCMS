@@ -27,20 +27,16 @@ namespace TempleCMS.Web.Data
         protected override async Task<ClaimsIdentity> GenerateClaimsAsync(ApplicationUser user)
         {
             var identity = await base.GenerateClaimsAsync(user);
+            var groupId = _context.GroupMembers
+                    .Where(c => c.MemberId == user.Id && c.Role == GroupRole.Leader)
+                    .Select(c => c.GroupId)
+                    .First();
 
             identity.AddClaim(new Claim("FullName", user.FullName));
             identity.AddClaim(new Claim("FirstName", user.FullName.Split(" ")[0]));
             identity.AddClaim(new Claim("FirstInitial", user.FullName[..1]));
             identity.AddClaim(new Claim("Image", user.Image));
-
-            if (await _userManager.IsInRoleAsync(user, "Leadership"))
-            {
-                var churchId = _context.ChurchMembers
-                    .Where(c => c.UserId == user.Id && c.Role == ChurchRole.Leader)
-                    .Select(c => c.ChurchId)
-                    .First();
-                identity.AddClaim(new Claim("ChurchId", churchId.ToString()));
-            }
+            identity.AddClaim(new Claim("GroupId", groupId.ToString()));
             
             return identity;
         }

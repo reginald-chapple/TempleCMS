@@ -1,7 +1,0 @@
-@model ChurchBackgroundEditModel
-
-<form asp-controller="Churches" asp-action="Background" asp-route-id="@Model.Id"  method="post">
-    <input type="hidden" asp-for="Id" value="@Model.Id" />
-    <textarea asp-for="Background"></textarea>
-    <input type="submit" value="Submit" class="my-3 btn btn-primary" />
-</form>

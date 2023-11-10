@@ -1,0 +1,21 @@
+@model GroupImageEditModel
+
+<div class="row g-3">
+    <div class="col-lg-5">
+        <div class="d-flex align-items-center justify-content-center">
+            <img class="rounded-3 img-fluid" src="~/media/groups/@Model.Image" alt="" />
+        </div>
+    </div>
+    <div class="col-lg-7">
+        <form asp-controller="Churches" asp-action="Image" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" value="@Model.Id" />
+            <div class="mb-3">
+                <label class="form-label" asp-for="ImageUpload">Upload Image</label>
+                <input class="form-control" asp-for="ImageUpload" placeholder="Upload Image" />
+                <span asp-validation-for="ImageUpload" class="text-danger"></span>
+            </div>
+            <button class="btn btn-primary w-100 mb-3">Upload</button>
+        </form>
+    </div>
+</div>

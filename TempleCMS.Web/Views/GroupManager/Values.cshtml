@@ -1,0 +1,52 @@
+@model Group
+
+@{
+    ViewData["Title"] = "Group Management";
+}
+
+@section Stylesheets { 
+}
+
+<div class="content mb-5">
+    <div class="card">
+        <div class="card-header border-bottom-0 pb-0">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h4 class="card-title mb-0"> 
+                            Values
+                        </h4>
+                    </div>
+                </div>
+                <div class="btn-reveal-trigger">
+                    <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none d-flex btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                        <span class="fas fa-ellipsis-h"></span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end py-2">
+                        <a class="dropdown-item" href="#!">Edit</a>
+                        <a class="dropdown-item text-danger" href="#!">Delete</a>
+                        <a class="dropdown-item" href="#!">Download</a>
+                        <a class="dropdown-item" href="#!">Report abuse</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="group-values" class="card-body">
+            @await Component.InvokeAsync("GroupValueForm", new { group = Model })
+        </div>
+    </div>    
+
+    <partial name="_Footer" />
+</div>
+
+@section VendorScripts {
+    <script src="~/vendors/tinymce/tinymce.min.js"></script>
+}
+
+@section CustomScripts {
+<script src="~/js/site.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    });
+</script>
+}

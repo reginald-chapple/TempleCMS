@@ -14,17 +14,17 @@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="mb-3 text-start">
-        <label class="form-label" asp-for="Email">Email</label>
+        <label class="form-label" asp-for="UserName"></label>
         <div class="form-icon-container">
-            <input class="form-control form-icon-input" asp-for="Email" placeholder="Email address" />
+            <input class="form-control form-icon-input" asp-for="UserName" placeholder="Enter User Name" aria-required="true" />
             <span class="fas fa-user text-900 fs--1 form-icon"></span>
         </div>
-        <span asp-validation-for="Email" class="text-danger"></span>
+        <span asp-validation-for="UserName" class="text-danger"></span>
     </div>
     <div class="mb-3 text-start">
-        <label class="form-label" asp-for="Password">Password</label>
+        <label class="form-label" asp-for="Password"></label>
         <div class="form-icon-container">
-            <input class="form-control form-icon-input" asp-for="Password" type="password" placeholder="Password" />
+            <input class="form-control form-icon-input" asp-for="Password" type="password" placeholder="Password" aria-required="true" />
             <span class="fas fa-key text-900 fs--1 form-icon"></span>
         </div>
         <span asp-validation-for="Password" class="text-danger"></span>
