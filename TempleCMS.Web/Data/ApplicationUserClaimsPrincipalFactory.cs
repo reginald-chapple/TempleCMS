@@ -32,6 +32,18 @@ namespace TempleCMS.Web.Data
             identity.AddClaim(new Claim("FirstName", user.FullName.Split(" ")[0]));
             identity.AddClaim(new Claim("FirstInitial", user.FullName[..1]));
             identity.AddClaim(new Claim("Image", user.Image));
+<<<<<<< HEAD
+=======
+
+            if (await _userManager.IsInRoleAsync(user, "Leadership"))
+            {
+                var churchId = _context.ChurchMembers
+                    .Where(c => c.UserId == user.Id && c.Role == ChurchRole.Leader)
+                    .Select(c => c.ChurchId)
+                    .First();
+                identity.AddClaim(new Claim("ChurchId", churchId.ToString()));
+            }
+>>>>>>> parent of 5530561 (massive changes)
             
             return identity;
         }

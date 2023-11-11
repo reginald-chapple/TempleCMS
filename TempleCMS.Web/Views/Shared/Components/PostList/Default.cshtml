@@ -1,6 +1,0 @@
-@model IEnumerable<Post>
-
-@foreach(var item in Model)
-{
-    @await Html.PartialAsync("Posts/_PostCard", item)
-}

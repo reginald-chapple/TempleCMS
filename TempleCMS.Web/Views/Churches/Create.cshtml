@@ -1,0 +1,107 @@
+@model ChurchInputModel
+
+@{
+    ViewData["Title"] = "Churches";
+    Layout = "_RootLayout";
+}
+
+@section Stylesheets {
+<!-- <link href="~/vendors/flatpickr/flatpickr.min.css" rel="stylesheet"> -->
+}
+
+<div class="content mb-5">
+    <div class="card">
+        <div class="card-header border-bottom-0 pb-0">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h4 class="card-title mb-0"> 
+                            Churches
+                        </h4>
+                    </div>
+                </div>
+                <div class="">
+                    <a class="btn btn-sm btn-phoenix-primary" role="button" asp-controller="Churches" asp-action="All">
+                        <span class="fas fa-compass"></span> Churches
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="new-church" class="card-body">
+            <form method="post" asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="mb-3 text-start">
+                    <label class="form-label" asp-for="ChurchName"></label>
+                    <input class="form-control" asp-for="ChurchName" placeholder="Church Name" />
+                    <span asp-validation-for="ChurchName" class="text-danger"></span>
+                </div>
+                <div class="mb-3 text-start">
+                    <label for="Branch" class="control-label">Branch</label>
+                    <select id="Branch" 
+                            class="form-select" 
+                            asp-items="Html.GetEnumSelectList<Branch>()">
+                        <option>Select Branch ...</option>
+                    </select>
+                </div>
+                <div class="mb-3 text-start">
+                    <label asp-for="DenominationId" class="control-label">Denomination</label>
+                    <select asp-for="DenominationId" class="form-select"></select>
+                </div>
+                <div class="mb-3 text-start">
+                    <label class="form-label" asp-for="FullName"></label>
+                    <input class="form-control" asp-for="FullName" placeholder="Full Name" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+                <div class="mb-3 text-start">
+                    <label class="form-label" asp-for="Email"></label>
+                    <input class="form-control" asp-for="Email" placeholder="name@example.com" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="row g-3 mb-3">
+                    <div class="col-sm-6">
+                        <label class="form-label" asp-for="Password"></label>
+                        <input class="form-control" asp-for="Password" placeholder="Password" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label" asp-for="ConfirmPassword"></label>
+                        <input class="form-control" asp-for="ConfirmPassword" placeholder="Confirm Password" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
+                <button class="btn btn-primary w-100 mb-3">Sign up</button>
+            </form>
+        </div>
+        <div class="card-footer border-0">
+            <p>Footer</p>
+        </div>
+    </div>    
+
+    <partial name="_Footer" />
+</div>
+
+@section VendorScripts {
+<!-- <script src="~/vendors/echarts/echarts.min.js"></script> -->
+}
+
+@section CustomScripts {
+<script src="~/js/churches.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#DenominationId').attr('disabled', true);
+        $('#Branch').change(() => {
+            var branch = $("#Branch").val();
+            console.log(branch)
+            if (branch) {
+                loadDenominations(branch);
+            }
+            else {
+                alert("Select Branch.");
+                $('#DenominationId').empty();
+                $('#DenominationId').attr('disabled', true);
+                $('#DenominationId').append('<option value="-1">--No Denominations found--</option>');
+            }
+        });
+    });
+</script>
+}

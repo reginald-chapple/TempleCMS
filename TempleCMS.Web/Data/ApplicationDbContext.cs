@@ -19,6 +19,7 @@ namespace TempleCMS.Web.Data
         public DbSet<Chat> Chats { get; set; }
         public DbSet<ChatUser> ChatUsers { get; set; }
         public DbSet<ChatMessage> ChatMessages { get; set; }
+<<<<<<< HEAD
         public DbSet<Event> Events { get; set; }
         public DbSet<EventUser> EventUsers { get; set; }
         public DbSet<Club> Clubs { get; set; }
@@ -36,6 +37,17 @@ namespace TempleCMS.Web.Data
         public DbSet<Playlist> Playlists { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Video> Videos { get; set; }
+=======
+        public DbSet<Denomination> Denominations { get; set; }
+        public DbSet<Church> Churches { get; set; }
+        public DbSet<ChurchMember> ChurchMembers { get; set; }
+        public DbSet<Belief> Beliefs { get; set; }
+        // public DbSet<Position> Positions { get; set; }
+        // public DbSet<UserPosition> UserPositions { get; set; }
+        public DbSet<Service> Services { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Value> Values { get; set; }
+>>>>>>> parent of 5530561 (massive changes)
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -57,8 +69,13 @@ namespace TempleCMS.Web.Data
             });
             builder.ApplyConfiguration(new ChatUserConfiguration());
             builder.ApplyConfiguration(new UserNotificationConfiguration());
+<<<<<<< HEAD
             builder.ApplyConfiguration(new ClubActivityConfiguration());
             builder.ApplyConfiguration(new ClubMemberConfiguration());
+=======
+            builder.ApplyConfiguration(new ChurchMemberConfiguration());
+            // builder.ApplyConfiguration(new UserPositionConfiguration());
+>>>>>>> parent of 5530561 (massive changes)
             builder.ApplyConfiguration(new EventUserConfiguration());
         }
 
@@ -110,5 +127,7 @@ namespace TempleCMS.Web.Data
             }
             return await base.SaveChangesAsync(true, cancellationToken);
         }
+
+        public DbSet<TempleCMS.Web.Domain.Event>? Event { get; set; }
     }
 }

@@ -33,9 +33,22 @@ namespace TempleCMS.Web.Controllers
         {
             if(ModelState.IsValid)
             {
+<<<<<<< HEAD:TempleCMS.Web/Controllers/ActivitiesController.cs
                 await _context.AddAsync(activity);
+=======
+                var churchId = User.FindFirst("ChurchId")!.Value;
+
+                if (churchId == null)
+                {
+                    return RedirectToAction(nameof(AccountController.AccessDenied), "Account");
+                }
+
+                value.ChurchId = long.Parse(churchId);
+
+                await _context.AddAsync(value);
+>>>>>>> parent of 5530561 (massive changes):TempleCMS.Web/Controllers/ValuesController.cs
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction(nameof(ChurchesController.Values), "Churches", new { id = long.Parse(churchId) });
             }
             return View(activity);
         }

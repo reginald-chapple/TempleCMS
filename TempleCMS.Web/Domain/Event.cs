@@ -12,24 +12,28 @@ namespace TempleCMS.Web.Domain
         [DataType(DataType.Text)]
         public string Details { get; set; } = string.Empty;
 
-        public string Location { get; set; } = string.Empty;
-
         public DateTime? StartTime { get; set; }
 
         public DateTime? EndTime { get; set; }
 
         public bool IsFree { get; set; }
 
-        public EventCategory Category { get; set; }
+        public EventType Type { get; set; }
 
+<<<<<<< HEAD
         public long ClubId { get; set; }
         public virtual Club? Club { get; set; }
+=======
+        public long ChurchId { get; set; }
+        public virtual Church? Church { get; set; }
+>>>>>>> parent of 5530561 (massive changes)
 
         public virtual ICollection<EventUser> Users { get; set; } = new List<EventUser>();
     }
 
-    public enum EventCategory
+    public enum EventType
     {
+<<<<<<< HEAD
         [Description("Community Service")]
         CommunityService,
         [Description("Celebration")]
@@ -40,6 +44,18 @@ namespace TempleCMS.Web.Domain
         FoodBeverage,
         [Description("Meetup")]
         Meetup,
+=======
+        [Description("Booking")]
+        Booking,
+        [Description("Ceremony")]
+        Ceremony,
+        [Description("Class")]
+        Class,
+        [Description("Conference")]
+        Conference,
+        [Description("Liturgy")]
+        Liturgy,
+>>>>>>> parent of 5530561 (massive changes)
         [Description("Trip")]
         Trip
     }

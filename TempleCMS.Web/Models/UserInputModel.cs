@@ -7,11 +7,6 @@ namespace TempleCMS.Web.Models
     public class UserInputModel
     {
         [Required]
-        [StringLength(16, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
-        [Display(Name = "User Name")]
-        public string UserName { get; set; } = string.Empty;
-
-        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; } = string.Empty;
@@ -22,7 +17,7 @@ namespace TempleCMS.Web.Models
         public string FullName { get; set; } = string.Empty;
 
         [Required]
-        [PhotoExtension]
+        [FileExtension]
         public IFormFile? ImageUpload { get; set; }
 
         [Required]
