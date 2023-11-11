@@ -1,7 +1,0 @@
-@model ClubGuidelinesEditModel
-
-<form asp-controller="Churches" asp-action="Guidelines" asp-route-id="@Model.Id"  method="post">
-    <input type="hidden" asp-for="Id" value="@Model.Id" />
-    <textarea asp-for="Guidelines"></textarea>
-    <input type="submit" value="Submit" class="my-3 btn btn-primary" />
-</form>
