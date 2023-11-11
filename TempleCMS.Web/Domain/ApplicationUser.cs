@@ -9,10 +9,10 @@ namespace TempleCMS.Web.Domain
     {
         public string FullName { get; set; } = string.Empty;
         
-        public string Image { get; set; } = "noimage.png";
+        public string Image { get; set; } = string.Empty;
 
         [NotMapped]
-        [FileExtension]
+        [PhotoExtension]
         public IFormFile? ImageUpload { get; set; }
 
         [DataType(DataType.Date)]

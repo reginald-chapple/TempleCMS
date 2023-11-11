@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="col-lg-7">
-        <form asp-controller="Churches" asp-action="Image" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
+        <form asp-controller="ChurchManager" asp-action="Image" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" value="@Model.Id" />
             <div class="mb-3">

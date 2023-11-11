@@ -44,7 +44,7 @@ namespace TempleCMS.Web.Controllers
 
                 await _context.AddAsync(belief);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(ChurchesController.Beliefs), "Churches", new { id = long.Parse(churchId) });
+                return RedirectToAction(nameof(ChurchManagerController.Beliefs), "ChurchManager", new { id = long.Parse(churchId) });
             }
             return View(belief);
         }

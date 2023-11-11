@@ -22,7 +22,7 @@ namespace TempleCMS.Web.Domain
         public string Image { get; set; } = "noimage.png";
 
         [NotMapped]
-        [FileExtension]
+        [PhotoExtension]
         public IFormFile? ImageUpload { get; set; }
 
         public long DenominationId { get; set; }

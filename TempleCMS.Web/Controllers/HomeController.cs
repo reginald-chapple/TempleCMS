@@ -32,7 +32,7 @@ public class HomeController : Controller
 
             if (user != null && await _userManager.IsInRoleAsync(user, "Leadership"))
             {
-                return RedirectToAction(nameof(ChurchesController.Office), "Churches", new { id = User.FindFirst("ChurchId")!.Value });
+                return RedirectToAction(nameof(ChurchManagerController.Index), "ChurchManager", new { id = User.FindFirst("ChurchId")!.Value });
             }
         }
         return View();

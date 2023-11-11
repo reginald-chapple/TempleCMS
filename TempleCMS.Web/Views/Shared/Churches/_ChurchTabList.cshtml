@@ -1,0 +1,29 @@
+@model Church
+
+<ul class="nav nav-underline deal-details scrollbar flex-nowrap w-100 pb-1 mb-3" id="myTab" role="tablist" style="overflow-y: hidden;">
+    <li class="nav-item text-nowrap me-2" role="presentation">
+        <a class="nav-link @Html.ActiveClass("ChurchManager", "Edit")" id="1-tab" asp-controller="ChurchManager" asp-action="Edit" asp-route-id="@Model.Id" role="tab" aria-controls="tab-1"> 
+            Church
+        </a>
+    </li>
+    <li class="nav-item text-nowrap me-2" role="presentation">
+        <a class="nav-link @Html.ActiveClass("ChurchManager", "Image")" id="2-tab" asp-controller="ChurchManager" asp-action="Image" asp-route-id="@Model.Id" role="tab" aria-controls="tab-2"> 
+            Image
+        </a>
+    </li>
+    <li class="nav-item text-nowrap me-2" role="presentation">
+        <a class="nav-link @Html.ActiveClass("ChurchManager", "Background")" id="3-tab" asp-controller="ChurchManager" asp-action="Background" asp-route-id="@Model.Id" role="tab" aria-controls="tab-3"> 
+            Background
+        </a>
+    </li>
+    <li class="nav-item text-nowrap me-2" role="presentation">
+        <a class="nav-link @Html.ActiveClass("ChurchManager", "Message")" id="4-tab" asp-controller="ChurchManager" asp-action="Message" asp-route-id="@Model.Id" role="tab" aria-controls="tab-4"> 
+            Message
+        </a>
+    </li>
+    <li class="nav-item text-nowrap me-2" role="presentation">
+        <a class="nav-link @Html.ActiveClass("ChurchManager", "Mission")" id="5-tab" asp-controller="ChurchManager" asp-action="Mission" asp-route-id="@Model.Id" role="tab" aria-controls="tab-5"> 
+            Mission
+        </a>
+    </li>
+</ul>

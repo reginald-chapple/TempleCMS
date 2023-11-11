@@ -3,7 +3,7 @@
     var firstInitial = User.FindFirst("FirstInitial")!.Value;
 }
 
-@if (profileImage == "noimage.png" || profileImage == null || profileImage == "")
+@if (string.IsNullOrEmpty(profileImage) || string.IsNullOrWhiteSpace(profileImage))
 {
     <div class="avatar-name rounded-circle"><span>@firstInitial</span></div>
 }

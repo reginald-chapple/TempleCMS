@@ -17,7 +17,7 @@ namespace TempleCMS.Web.Models
         public string FullName { get; set; } = string.Empty;
 
         [Required]
-        [FileExtension]
+        [PhotoExtension]
         public IFormFile? ImageUpload { get; set; }
 
         [Required]

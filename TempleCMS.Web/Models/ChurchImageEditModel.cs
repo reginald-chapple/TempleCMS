@@ -10,7 +10,7 @@ namespace TempleCMS.Web.Models
         public string Image { get; set; } = "noimage.png";
 
         [NotMapped]
-        [FileExtension]
+        [PhotoExtension]
         public IFormFile? ImageUpload { get; set; }
     }
 }
