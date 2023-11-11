@@ -1,0 +1,253 @@
+<nav class="navbar navbar-vertical navbar-expand-lg">
+    <script>
+        var navbarStyle = window.config.config.phoenixNavbarStyle;
+        if (navbarStyle && navbarStyle !== 'transparent') {
+            document.querySelector('body').classList.add(`navbar-${navbarStyle}`);
+        }
+    </script>
+    <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
+        <!-- scrollbar removed-->
+        <div class="navbar-vertical-content">
+            <ul class="navbar-nav flex-column" id="navbarVerticalNav">
+                <li class="nav-item">
+                    <div class="nav-item-wrapper">
+                        <a class="nav-link label-1" asp-controller="Churches" asp-action="Office" asp-route-id="@(User.FindFirst("ChurchId")!.Value)" role="button" data-bs-toggle="" aria-expanded="false">
+                            <div class="d-flex align-items-center">
+                                <span class="nav-link-icon">
+                                    <span class="uil uil-building fs-1"></span>
+                                </span>
+                                <span class="nav-link-text-wrapper">
+                                    <span class="nav-link-text">Office</span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <!-- parent pages-->
+                    <div class="nav-item-wrapper">
+                        <a class="nav-link dropdown-indicator label-1" href="#nv-church"
+                            role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-church">
+                            <div class="d-flex align-items-center">
+                                <div class="dropdown-indicator-icon">
+                                    <span class="fas fa-caret-right"></span>
+                                </div>
+                                <span class="nav-link-icon">
+                                    <span class="uil uil-house-user fs-1"></span>
+                                </span>
+                                <span class="nav-link-text">Church</span>
+                            </div>
+                        </a>
+                        <div class="parent-wrapper label-1">
+                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-church">
+                                <li class="collapsed-nav-item-title d-none">Church</li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Churches" asp-action="Edit" asp-route-id="@(User.FindFirst("ChurchId")!.Value)">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">Edit</span>
+                                        </div>
+                                    </a>
+                                    <!-- more inner pages-->
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Churches" asp-action="Beliefs" asp-route-id="@(User.FindFirst("ChurchId")!.Value)">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">Beliefs</span>
+                                        </div>
+                                    </a>
+                                    <!-- more inner pages-->
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Churches" asp-action="Values" asp-route-id="@(User.FindFirst("ChurchId")!.Value)">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">Values</span>
+                                        </div>
+                                    </a>
+                                    <!-- more inner pages-->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-item-wrapper">
+                        <a class="nav-link label-1" asp-controller="Churches" asp-action="Members" asp-route-id="@(User.FindFirst("ChurchId")!.Value)" role="button" data-bs-toggle="" aria-expanded="false">
+                            <div class="d-flex align-items-center">
+                                <span class="nav-link-icon">
+                                    <span class="uil uil-users-alt fs-1"></span>
+                                </span>
+                                <span class="nav-link-text-wrapper">
+                                    <span class="nav-link-text">Members</span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <!-- parent pages-->
+                    <div class="nav-item-wrapper">
+                        <a class="nav-link dropdown-indicator label-1" href="#nv-services"
+                            role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-services">
+                            <div class="d-flex align-items-center">
+                                <div class="dropdown-indicator-icon">
+                                    <span class="fas fa-caret-right"></span>
+                                </div>
+                                <span class="nav-link-icon">
+                                    <span class="uil uil-apps fs-1"></span>
+                                </span>
+                                <span class="nav-link-text">Church Services</span>
+                            </div>
+                        </a>
+                        <div class="parent-wrapper label-1">
+                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-services">
+                                <li class="collapsed-nav-item-title d-none">Church Services</li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Churches" asp-action="Services" asp-route-id="@(User.FindFirst("ChurchId")!.Value)">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">Services</span>
+                                        </div>
+                                    </a>
+                                    <!-- more inner pages-->
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#!">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">Bookings</span>
+                                        </div>
+                                    </a>
+                                    <!-- more inner pages-->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <!-- parent pages-->
+                    <div class="nav-item-wrapper">
+                        <a class="nav-link dropdown-indicator label-1" href="#nv-content"
+                            role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-content">
+                            <div class="d-flex align-items-center">
+                                <div class="dropdown-indicator-icon">
+                                    <span class="fas fa-caret-right"></span>
+                                </div>
+                                <span class="nav-link-icon">
+                                    <span class="uil uil-comment-image fs-1"></span>
+                                </span>
+                                <span class="nav-link-text">Content</span>
+                            </div>
+                        </a>
+                        <div class="parent-wrapper label-1">
+                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-content">
+                                <li class="collapsed-nav-item-title d-none">Content</li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#!">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">Articles</span>
+                                        </div>
+                                    </a>
+                                    <!-- more inner pages-->
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#!">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">Videos</span>
+                                        </div>
+                                    </a>
+                                    <!-- more inner pages-->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <!-- parent pages-->
+                    <div class="nav-item-wrapper">
+                        <a class="nav-link dropdown-indicator label-1" href="#nv-events"
+                            role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-events">
+                            <div class="d-flex align-items-center">
+                                <div class="dropdown-indicator-icon">
+                                    <span class="fas fa-caret-right"></span>
+                                </div>
+                                <span class="nav-link-icon">
+                                    <span class="uil uil-calendar-alt fs-1"></span>
+                                </span>
+                                <span class="nav-link-text">Events</span>
+                            </div>
+                        </a>
+                        <div class="parent-wrapper label-1">
+                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-events">
+                                <li class="collapsed-nav-item-title d-none">Events</li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#!">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">Calendar</span>
+                                        </div>
+                                    </a>
+                                    <!-- more inner pages-->
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#!">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">Events</span>
+                                        </div>
+                                    </a>
+                                    <!-- more inner pages-->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-item-wrapper">
+                        <a class="nav-link label-1" href="!#" role="button" data-bs-toggle="" aria-expanded="false">
+                            <div class="d-flex align-items-center">
+                                <span class="nav-link-icon">
+                                    <span class="uil uil-setting fs-1"></span>
+                                </span>
+                                <span class="nav-link-text-wrapper">
+                                    <span class="nav-link-text">Settings</span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <p class="navbar-vertical-label">Documentation</p>
+                    <hr class="navbar-vertical-line" />
+                    <!-- parent pages-->
+                    <div class="nav-item-wrapper">
+                        <a class="nav-link label-1" href="#!" role="button" data-bs-toggle="" aria-expanded="false">
+                            <div class="d-flex align-items-center">
+                                <span class="nav-link-icon">
+                                    <span class="uil uil-book-reader fs-1"></span>
+                                </span>
+                                <span class="nav-link-text-wrapper">
+                                    <span class="nav-link-text">Getting started</span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="nav-item-wrapper">
+                        <a class="nav-link label-1" href="#!" role="button" data-bs-toggle="" aria-expanded="false">
+                            <div class="d-flex align-items-center">
+                                <span class="nav-link-icon">
+                                    <span class="uil uil-question-circle fs-1"></span>
+                                </span>
+                                <span class="nav-link-text-wrapper">
+                                    <span class="nav-link-text">Faq</span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="navbar-vertical-footer">
+        <button class="btn navbar-vertical-toggle border-0 fw-semi-bold w-100 white-space-nowrap d-flex align-items-center">
+            <span class="uil uil-left-arrow-to-left fs-0"></span>
+            <span class="uil uil-arrow-from-right fs-0"></span>
+            <span class="navbar-vertical-footer-text ms-2">Collapsed View</span>
+        </button>
+    </div>
+</nav>

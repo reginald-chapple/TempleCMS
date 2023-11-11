@@ -1,0 +1,33 @@
+@model IEnumerable<Church>
+
+@{
+    ViewData["Title"] = "Churches";
+    Layout = "_RootLayout";
+}
+
+@section Stylesheets {
+<!-- <link href="~/vendors/flatpickr/flatpickr.min.css" rel="stylesheet"> -->
+}
+
+<div class="content" style="margin-top: -60px;">
+    <partial name="_Breadcrumbs" />
+    <partial name="Churches/_ChurchSearch" />
+    <div class="row g-3 mb-9">
+        @foreach (var item in Model)
+        {
+            @await Html.PartialAsync("Churches/_ChurchCard", item)
+        }
+    </div>
+    <partial name="_Footer" />
+</div>
+
+@section VendorScripts {
+<!-- <script src="~/vendors/echarts/echarts.min.js"></script> -->
+}
+
+@section CustomScripts {
+<script src="~/js/churches.js"></script>
+<script>
+    $(document).ready(function () {});
+</script>
+}
