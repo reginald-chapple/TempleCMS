@@ -5,11 +5,11 @@ namespace TempleCMS.Web.ViewComponents
 {
     public class VideoPostModalViewComponent : ViewComponent
     {
-        public IViewComponentResult Invoke(long groupId)
+        public IViewComponentResult Invoke(long clubId)
         {
             return View(new VideoPostInputModel
             {
-                GroupId = groupId
+                ClubId = clubId
             });
         }
     }

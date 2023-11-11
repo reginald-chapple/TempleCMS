@@ -22,16 +22,16 @@ namespace TempleCMS.Web.Domain
 
         public EventCategory Category { get; set; }
 
-        public long GroupId { get; set; }
-        public virtual Group? Group { get; set; }
+        public long ClubId { get; set; }
+        public virtual Club? Club { get; set; }
 
         public virtual ICollection<EventUser> Users { get; set; } = new List<EventUser>();
     }
 
     public enum EventCategory
     {
-        [Description("Campaign")]
-        Campaign,
+        [Description("Community Service")]
+        CommunityService,
         [Description("Celebration")]
         Celebration,
         [Description("Entertainment")]

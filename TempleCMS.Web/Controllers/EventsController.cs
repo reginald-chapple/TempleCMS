@@ -24,7 +24,7 @@ namespace TempleCMS.Web.Controllers
         // GET: Events
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Events.Include(e => e.Group);
+            var applicationDbContext = _context.Events.Include(e => e.Club);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -37,7 +37,7 @@ namespace TempleCMS.Web.Controllers
             }
 
             var @event = await _context.Events
-                .Include(e => e.Group)
+                .Include(e => e.Club)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (@event == null)
             {
@@ -60,8 +60,8 @@ namespace TempleCMS.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                long groupId = long.Parse(User.FindFirst("GroupId")!.Value);
-                @event.GroupId = groupId;
+                long clubId = long.Parse(User.FindFirst("ClubId")!.Value);
+                @event.ClubId = clubId;
                 _context.Add(@event);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -99,18 +99,18 @@ namespace TempleCMS.Web.Controllers
                 return NotFound();
             }
 
-            if (User.FindFirst("GroupId")!.Value == null)
+            if (User.FindFirst("ClubId")!.Value == null)
             {
                 return RedirectToAction(nameof(AccountController.AccessDenied), "Account");
             }
 
-            long groupId = long.Parse(User.FindFirst("GroupId")!.Value);
+            long clubId = long.Parse(User.FindFirst("ClubId")!.Value);
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    @event.GroupId = groupId;
+                    @event.ClubId = clubId;
                     _context.Update(@event);
                     await _context.SaveChangesAsync();
                 }
@@ -140,7 +140,7 @@ namespace TempleCMS.Web.Controllers
             }
 
             var @event = await _context.Events
-                .Include(e => e.Group)
+                .Include(e => e.Club)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (@event == null)
             {

@@ -59,13 +59,13 @@ namespace TempleCMS.Web.Controllers
 
                 if (result.Succeeded)
                 {
-                    var group = new Group
+                    var club = new Club
                     {
                         Name = "Unnamed",
                     };
-                    group.Members.Add(new GroupMember { MemberId = newUser.Id, Role = GroupRole.Leader });
+                    club.Members.Add(new ClubMember { MemberId = newUser.Id, Role = ClubRole.Leader });
                     
-                    await _context.Groups.AddAsync(group);
+                    await _context.Clubs.AddAsync(club);
                     await _context.SaveChangesAsync();
                     await _userManager.AddToRoleAsync(newUser, "Member");
                     await _signInManager.SignInAsync(newUser, isPersistent: false);

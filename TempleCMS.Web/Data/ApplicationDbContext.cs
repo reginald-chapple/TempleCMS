@@ -21,12 +21,12 @@ namespace TempleCMS.Web.Data
         public DbSet<ChatMessage> ChatMessages { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventUser> EventUsers { get; set; }
-        public DbSet<Group> Groups { get; set; }
-        public DbSet<GroupMember> GroupMembers { get; set; }
-        public DbSet<Value> Values { get; set; }
-        public DbSet<GroupValue> GroupValues { get; set; }
+        public DbSet<Club> Clubs { get; set; }
+        public DbSet<ClubMember> ClubMembers { get; set; }
+        public DbSet<Activity> Activities { get; set; }
+        public DbSet<ClubActivity> ClubActivities { get; set; }
         public DbSet<Cause> Causes { get; set; }
-        public DbSet<Campaign> Campaigns { get; set; }
+        public DbSet<CommunityService> CommunityServices { get; set; }
         public DbSet<Fundraiser> Fundraisers { get; set; }
         public DbSet<Donation> Donations { get; set; }
         public DbSet<Post> Posts { get; set; }
@@ -57,8 +57,8 @@ namespace TempleCMS.Web.Data
             });
             builder.ApplyConfiguration(new ChatUserConfiguration());
             builder.ApplyConfiguration(new UserNotificationConfiguration());
-            builder.ApplyConfiguration(new GroupValueConfiguration());
-            builder.ApplyConfiguration(new GroupMemberConfiguration());
+            builder.ApplyConfiguration(new ClubActivityConfiguration());
+            builder.ApplyConfiguration(new ClubMemberConfiguration());
             builder.ApplyConfiguration(new EventUserConfiguration());
         }
 

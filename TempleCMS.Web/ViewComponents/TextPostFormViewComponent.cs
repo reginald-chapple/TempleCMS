@@ -5,11 +5,11 @@ namespace TempleCMS.Web.ViewComponents
 {
     public class TextPostFormViewComponent : ViewComponent
     {
-        public IViewComponentResult Invoke(long groupId)
+        public IViewComponentResult Invoke(long clubId)
         {
             return View(new TextPostInputModel
             {
-                GroupId = groupId
+                ClubId = clubId
             });
         }
     }

@@ -8,6 +8,6 @@ namespace TempleCMS.Web.Models
         public string Body { get; set; } = string.Empty;
 
         [Required]
-        public long GroupId { get; set; }
+        public long ClubId { get; set; }
     }
 }

@@ -36,7 +36,7 @@ namespace TempleCMS.Web.Controllers
             var post = new Post
             {
                 Body = model.Body,
-                GroupId = model.GroupId,
+                ClubId = model.ClubId,
                 AuthorId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value
             };
 

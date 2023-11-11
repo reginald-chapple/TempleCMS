@@ -22,10 +22,10 @@ namespace TempleCMS.Web.Domain
         [Precision(8, 2)]
         public decimal AmountRaised { get; set; } = 0.00m;
 
-        public long? CampaignId { get; set; }
+        public long? CommunityServiceId { get; set; }
 
-        public long GroupId { get; set; }
-        public virtual Group? Group { get; set; }
+        public long ClubId { get; set; }
+        public virtual Club? Club { get; set; }
 
         public virtual ICollection<Donation> Donations { get; set; } = new List<Donation>();
     }

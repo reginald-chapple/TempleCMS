@@ -17,6 +17,6 @@ namespace TempleCMS.Web.Domain
         public virtual Cause? Parent { get; set; }
 
         public virtual ICollection<Cause> Children { get; set; } = new List<Cause>();
-        public virtual ICollection<Campaign> Campaigns { get; set; } = new List<Campaign>();
+        public virtual ICollection<CommunityService> CommunityServices { get; set; } = new List<CommunityService>();
     }
 }

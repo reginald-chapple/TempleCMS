@@ -14,6 +14,6 @@ namespace TempleCMS.Web.Models
         public List<IFormFile> ImageUploads { get; set; } = new List<IFormFile>();
 
         [Required]
-        public long GroupId { get; set; }
+        public long ClubId { get; set; }
     }
 }

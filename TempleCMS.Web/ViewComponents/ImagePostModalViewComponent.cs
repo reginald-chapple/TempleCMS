@@ -5,11 +5,11 @@ namespace TempleCMS.Web.ViewComponents
 {
     public class ImagePostModalViewComponent : ViewComponent
     {
-        public IViewComponentResult Invoke(long groupId)
+        public IViewComponentResult Invoke(long clubId)
         {
             return View(new ImagePostInputModel
             {
-                GroupId = groupId
+                ClubId = clubId
             });
         }
     }

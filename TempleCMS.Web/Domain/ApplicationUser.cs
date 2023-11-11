@@ -22,7 +22,7 @@ namespace TempleCMS.Web.Domain
         public virtual ICollection<UserNotification> Notifications { get; set; } = new List<UserNotification>();
         public virtual ICollection<ChatUser> Chats { get; set; } = new List<ChatUser>();
         public virtual ICollection<EventUser> Events { get; set; } = new List<EventUser>();
-        public virtual ICollection<GroupMember> Groups { get; set; } = new List<GroupMember>();
+        public virtual ICollection<ClubMember> Clubs { get; set; } = new List<ClubMember>();
         public virtual ICollection<Donation> Donations { get; set; } = new List<Donation>();
         public virtual ICollection<Post> Posts { get; set; } = new List<Post>();
         public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();

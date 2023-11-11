@@ -1,0 +1,19 @@
+@model ClubEditModel
+
+<form asp-controller="Clubs" asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3 form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" asp-for="IsOpen" /> @Html.DisplayNameFor(model => model.IsOpen)
+        </label>
+    </div>
+    <div class="mb-3">
+        <input type="submit" value="Save" class="btn btn-primary w-100" />
+    </div>
+</form>

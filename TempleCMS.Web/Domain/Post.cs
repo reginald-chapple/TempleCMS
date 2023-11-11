@@ -20,8 +20,8 @@ namespace TempleCMS.Web.Domain
 
         public virtual Video? Video { get; set; }
 
-        public long GroupId { get; set; }
-        public virtual Group? Group { get; set; }
+        public long ClubId { get; set; }
+        public virtual Club? Club { get; set; }
 
         public string AuthorId { get; set; } = string.Empty;
         public virtual ApplicationUser? Author { get; set; }

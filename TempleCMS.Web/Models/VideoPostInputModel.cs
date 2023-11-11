@@ -15,6 +15,6 @@ namespace TempleCMS.Web.Models
         public IFormFile? VideoUpload { get; set; }
 
         [Required]
-        public long GroupId { get; set; }
+        public long ClubId { get; set; }
     }
 }

@@ -1,7 +1,7 @@
-@model Group
+@model Club
 
 @{
-    ViewData["Title"] = "Groups";
+    ViewData["Title"] = "Clubs";
 }
 
 @section Stylesheets {
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div id="all-values" class="card-body">
-            @await Component.InvokeAsync("ValuesTable", new { groupId = Model.Id })
+            @await Component.InvokeAsync("ValuesTable", new { clubId = Model.Id })
         </div>
         @* <div class="card-footer border-0">
             <p>Footer</p>

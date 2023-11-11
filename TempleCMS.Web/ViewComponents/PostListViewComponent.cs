@@ -14,10 +14,10 @@ namespace TempleCMS.Web.ViewComponents
             _context = context;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(long groupId)
+        public async Task<IViewComponentResult> InvokeAsync(long clubId)
         {
             var posts = await _context.Posts
-                .Where(p => p.GroupId == groupId)
+                .Where(p => p.ClubId == clubId)
                 .Include(p => p.Author)
                 .OrderByDescending(p => p.Created)
                 .ToListAsync();

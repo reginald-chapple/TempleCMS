@@ -1,14 +1,14 @@
-@model Group
+@model Club
 
 @{
-    ViewData["Title"] = "Groups";
+    ViewData["Title"] = "Clubs";
 }
 
 @section Stylesheets {
 }
 
 <div class="content mb-5">
-    @await Component.InvokeAsync("GroupEventTable", new { groupId = Model.Id })
+    @await Component.InvokeAsync("ClubEventTable", new { clubId = Model.Id })
     <partial name="_Footer" />
 </div>
 

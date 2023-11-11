@@ -1,7 +1,7 @@
-@model Group
+@model Club
 
 @{
-    ViewData["Title"] = "Groups";
+    ViewData["Title"] = "Clubs";
 }
 
 @section Stylesheets {
@@ -11,7 +11,7 @@
 <div class="content">
     <partial name="_Breadcrumbs" />
     <h2 class="text-bold text-1100 mb-5">Members</h2>
-    @await Component.InvokeAsync("GroupMemberTable", new { groupId = Model.Id })
+    @await Component.InvokeAsync("ClubMemberTable", new { clubId = Model.Id })
     <partial name="_Footer" />
 </div>
 

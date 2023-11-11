@@ -25,7 +25,7 @@
                 </li>
                 <li class="nav-item">
                     <div class="nav-item-wrapper">
-                        <a class="nav-link label-1" asp-controller="Groups" asp-action="Feed" asp-route-id="1" role="button" data-bs-toggle="" aria-expanded="false">
+                        <a class="nav-link label-1" asp-controller="Clubs" asp-action="Feed" asp-route-id="1" role="button" data-bs-toggle="" aria-expanded="false">
                             <div class="d-flex align-items-center">
                                 <span class="nav-link-icon">
                                     <span class="uil uil-comment-alt-share fs-1"></span>
@@ -40,8 +40,8 @@
                 <li class="nav-item">
                     <!-- parent pages-->
                     <div class="nav-item-wrapper">
-                        <a class="nav-link dropdown-indicator label-1" href="#nv-group"
-                            role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-group">
+                        <a class="nav-link dropdown-indicator label-1" href="#nv-club"
+                            role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-club">
                             <div class="d-flex align-items-center">
                                 <div class="dropdown-indicator-icon">
                                     <span class="fas fa-caret-right"></span>
@@ -49,22 +49,22 @@
                                 <span class="nav-link-icon">
                                     <span class="uil uil-users-alt fs-1"></span>
                                 </span>
-                                <span class="nav-link-text">Group</span>
+                                <span class="nav-link-text">Club</span>
                             </div>
                         </a>
                         <div class="parent-wrapper label-1">
-                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-group">
-                                <li class="collapsed-nav-item-title d-none">Group</li>
+                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-club">
+                                <li class="collapsed-nav-item-title d-none">Club</li>
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-controller="GroupManager" asp-action="Index" asp-route-id="@(User.FindFirst("GroupId")!.Value)">
+                                    <a class="nav-link" asp-controller="Dashboard" asp-action="Clubs" asp-route-id="@(User.FindFirst(ClaimTypes.NameIdentifier)!.Value)">
                                         <div class="d-flex align-items-center">
-                                            <span class="nav-link-text">Group</span>
+                                            <span class="nav-link-text">Club</span>
                                         </div>
                                     </a>
                                     <!-- more inner pages-->
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-controller="GroupManager" asp-action="Values" asp-route-id="@(User.FindFirst("GroupId")!.Value)">
+                                    <a class="nav-link" href="#!">
                                         <div class="d-flex align-items-center">
                                             <span class="nav-link-text">Values</span>
                                         </div>
@@ -86,21 +86,21 @@
                 <li class="nav-item">
                     <!-- parent pages-->
                     <div class="nav-item-wrapper">
-                        <a class="nav-link dropdown-indicator label-1" href="#nv-campaign"
-                            role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-campaign">
+                        <a class="nav-link dropdown-indicator label-1" href="#nv-community-service"
+                            role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-community-service">
                             <div class="d-flex align-items-center">
                                 <div class="dropdown-indicator-icon">
                                     <span class="fas fa-caret-right"></span>
                                 </div>
                                 <span class="nav-link-icon">
-                                    <span class="uil uil-constructor fs-1"></span>
+                                    <span class="uil uil-heartbeat fs-1"></span>
                                 </span>
-                                <span class="nav-link-text">Feed</span>
+                                <span class="nav-link-text">Community Service</span>
                             </div>
                         </a>
                         <div class="parent-wrapper label-1">
-                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-campaign">
-                                <li class="collapsed-nav-item-title d-none">Campaigns</li>
+                            <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-community-service">
+                                <li class="collapsed-nav-item-title d-none">Community Services</li>
                                 <li class="nav-item">
                                     <a class="nav-link" asp-controller="Dashboard" asp-action="Images" asp-route-id="@(User.FindFirst(ClaimTypes.NameIdentifier)!.Value)">
                                         <div class="d-flex align-items-center">
