@@ -1,0 +1,25 @@
+@model Church
+@inject SignInManager<ApplicationUser> SignInManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    @if (Model.Members.Any(c => c.UserId == User.FindFirst(ClaimTypes.NameIdentifier)!.Value))
+    {
+        <a href="#!" class="btn btn-primary w-100 disabled" tabindex="-1" role="button" aria-disabled="true">
+            Join
+        </a>
+
+    }
+    else
+    {
+        <a asp-controller="Churches" asp-action="Join" asp-route-id="@Model.Id" class="btn btn-primary w-100">
+            Join
+        </a>
+    }
+}
+else
+{
+    <a asp-controller="Account" asp-action="Login" class="btn btn-primary w-100" role="button">
+        Join
+    </a>
+}

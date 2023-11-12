@@ -1,0 +1,47 @@
+@model Church
+
+@{
+    ViewData["Title"] = "Feed";
+    Layout = "_RootLayout";
+}
+
+@section Stylesheets {
+<link href="~/vendors/glightbox/glightbox.min.css" rel="stylesheet" />
+}
+
+<div class="content" style="margin-top: -60px;">
+    <div class="pb-10">
+        <div class="row gy-3 gx-5 gx-xxl-6">
+            <div class="col-lg-5 col-xl-4 d-none d-lg-block">
+                @await Html.PartialAsync("Churches/_ChurchFeedSide")
+            </div>
+            <div class="col-lg-7 col-xl-8">
+                @await Component.InvokeAsync("TextPostForm", new { churchId = Model.Id })
+                <div class="mb-9">
+                    <div id="feed-posts" class="mb-5">
+                        @await Component.InvokeAsync("PostList", new { churchId = Model.Id })
+                    </div>
+                </div>
+                <div class="text-center"><a class="btn btn-link fs-0 p-0" href="#!">Load more</a></div>
+            </div>
+        </div>
+    </div>
+    <partial name="_Footer" />
+</div>
+
+@await Component.InvokeAsync("ImagePostModal", new { churchId = Model.Id })
+@await Component.InvokeAsync("VideoPostModal", new { churchId = Model.Id })
+
+@section VendorScripts {
+<script src="~/vendors/glightbox/glightbox.min.js"></script>
+}
+
+@section CustomScripts {
+<script src="~/js/site.js"></script>
+<script src="~/js/posts.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        savePost();
+    });
+</script>
+}

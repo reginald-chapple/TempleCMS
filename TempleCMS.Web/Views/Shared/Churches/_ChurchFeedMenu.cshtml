@@ -1,0 +1,43 @@
+@model Church
+
+<div class="row g-0">
+    <div class="col-6 border-1 border-bottom border-end py-2"> 
+        <a class="btn btn-link ps-2 fs-0 text-800 hover-primary fw-semi-bold d-flex flex-column d-xxl-inline-block"
+            href="#!">
+            <span class="uil uil-comment-alt-share fs-2 me-2 mb-2 mb-xxl-0"></span>Feed
+        </a>
+    </div>
+    <div class="col-6 border-1 border-bottom py-2">
+        <a class="btn btn-link fs-0 text-800 hover-primary fw-semi-bold d-flex flex-column d-xxl-inline-block"
+            asp-controller="Churches" asp-action="Details" asp-route-id="@Model.Id">
+            <span class="uil uil-info-circle fs-2 me-2 mb-2 mb-xxl-0"></span>Details
+        </a>
+    </div>
+    <div class="col-6 border-1 border-bottom border-end py-2">
+        <a class="btn btn-link ps-2 fs-0 text-800 hover-primary fw-semi-bold d-flex flex-column d-xxl-inline-block"
+            href="#!">
+            <span class="uil uil-users-alt fs-2 me-2 mb-2 mb-xxl-0"></span>Members
+        </a>
+    </div>
+    <div class="col-6 border-1 border-bottom py-2">
+        <a 
+            class="btn btn-link fs-0 text-800 hover-primary fw-semi-bold d-flex flex-column d-xxl-inline-block"
+            href="#!">
+            <span class="uil uil-heart fs-2 me-2 mb-2 mb-xxl-0"></span>Donate
+        </a>
+    </div>
+    <div class="col-6 border-1 border-end py-2">
+        <a
+            class="btn btn-link ps-2 fs-0 text-800 hover-primary fw-semi-bold d-flex flex-column d-xxl-inline-block"
+            href="#!">
+            <span class="uil uil-calendar-alt fs-2 me-2 mb-2 mb-xxl-0"></span>Events
+        </a>
+    </div>
+    <div class="col-6 border-1 py-2">
+        <a
+            class="btn btn-link fs-0 text-800 hover-primary fw-semi-bold d-flex flex-column d-xxl-inline-block"
+            href="#!">
+            <span class="uil uil-comment-image fs-2 me-2 mb-2 mb-xxl-0"></span>Media 
+        </a>
+    </div>
+</div>

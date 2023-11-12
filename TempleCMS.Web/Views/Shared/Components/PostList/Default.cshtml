@@ -1,0 +1,8 @@
+@model IEnumerable<Post>
+
+@await Html.PartialAsync("Posts/_PostDummy")
+
+@foreach(var item in Model)
+{
+    @await Html.PartialAsync("Posts/_PostCard", item)
+}

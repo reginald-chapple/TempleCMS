@@ -11,33 +11,29 @@
 }
 
 <div class="content" style="margin-top: -60px;">
-    <partial name="_Breadcrumbs" />
-    <div class="row g-3 mb-9">
-        <div class="col">
-            <h1>@Model.Name</h1>
-            <div>
-                @if (SignInManager.IsSignedIn(User))
-                {
-                    @if (Model.Members.Any(c => c.UserId == User.FindFirst(ClaimTypes.NameIdentifier)!.Value))
-                    {
-                        <a href="#!" class="btn btn-primary disabled" tabindex="-1" role="button" aria-disabled="true">
-                            Join
-                        </a>
-
-                    }
-                    else
-                    {
-                        <a asp-controller="Churches" asp-action="Join" asp-route-id="@Model.Id" class="btn btn-primary">
-                            Join
-                        </a>
-                    }
-                }
-                else
-                {
-                    <a asp-controller="Account" asp-action="Login" class="btn btn-primary" role="button">
-                        Join
-                    </a>
-                }
+    <div class="pb-10">
+        <div class="row gy-3 gx-5 gx-xxl-6">
+            <div class="col-lg-5 col-xl-4 d-none d-lg-block">
+                @await Html.PartialAsync("Churches/_ChurchFeedSide")
+            </div>
+            <div class="col-lg-7 col-xl-8">
+                <partial name="_Breadcrumbs" />
+                <div class="row g-3 mb-9">
+                    <div class="col">
+                        <div>
+                            <h3>Our Story</h3>
+                            @Html.Raw(HttpUtility.HtmlDecode(Model.Background))
+                        </div>
+                        <div>
+                            <h3>Our Message</h3>
+                            @Html.Raw(HttpUtility.HtmlDecode(Model.Message))
+                        </div>
+                        <div>
+                            <h3>Our Mission</h3>
+                            @Html.Raw(HttpUtility.HtmlDecode(Model.Mission))
+                        </div>
+                    </div>
+                </div> 
             </div>
         </div>
     </div>

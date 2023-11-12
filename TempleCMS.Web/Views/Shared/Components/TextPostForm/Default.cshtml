@@ -1,0 +1,29 @@
+@model TextPostInputModel
+@inject SignInManager<ApplicationUser> SignInManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+<div class="card d-flex flex-column mb-5">
+    <form id="post-form" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <textarea asp-for="Body" class="form-control border-200 rounded-bottom-0 border-0 flex-1 fs-0" rows="5" placeholder="Write something..."></textarea>
+        <input type="hidden" asp-for="ChurchId" />
+    </form>
+    
+    <div class="card-footer p-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="dropdown me-3 d-inline-block flex-1">
+                <button class="btn p-0" data-bs-toggle="modal" data-bs-target="#imagePostModal">
+                    <span class="fa-solid fa-image fs-0"></span>
+                </button>
+                <button class="btn p-0" data-bs-toggle="modal" data-bs-target="#videoPostModal">
+                    <span class="fa-solid fa-video fs-0"></span>
+                </button>
+            </div>
+            <div class="d-flex align-items-center">
+                <button form="post-form" class="btn btn-primary btn-sm px-6 px-sm-8">Post</button>
+            </div>
+        </div>
+    </div>
+</div>
+}

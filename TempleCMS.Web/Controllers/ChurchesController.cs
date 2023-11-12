@@ -111,6 +111,28 @@ namespace TempleCMS.Web.Controllers
             return View(church);
         }
 
+        [Route("{id}/Feed")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Feed(long? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var church = await _context.Churches
+                .Include(c => c.Denomination)
+                .Include(c => c.Members)
+                .FirstOrDefaultAsync(c => c.Id == id);
+
+            if (church == null)
+            {
+                return NotFound();
+            }
+            
+            return View(church);
+        }
+
         [Route("{id}/Join")]
         public async Task<IActionResult> Join(long? id)
         {
@@ -136,7 +158,7 @@ namespace TempleCMS.Web.Controllers
             });
             await _context.SaveChangesAsync();
             
-            return RedirectToAction(nameof(Details), new { id = church.Id });
+            return RedirectToAction(nameof(Feed), new { id = church.Id });
         }
     
         [Route("{branch}/GetDenominations")]

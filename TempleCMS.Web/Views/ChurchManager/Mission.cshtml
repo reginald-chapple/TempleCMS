@@ -63,8 +63,9 @@
             plugins: [
                 'lists', 'link', 'wordcount'
             ],
-            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link',
+            toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link',
         });
+        tinymce.activeEditor.getContent({ format: 'text' })
     });
 </script>
 }

@@ -164,7 +164,7 @@ namespace TempleCMS.Web.Controllers
                 _context.Update(church);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Image), "Churches", new { id = church.Id });
+                return RedirectToAction(nameof(Image), "ChurchManager", new { id = church.Id });
             }
 
             return View(model);
@@ -222,7 +222,7 @@ namespace TempleCMS.Web.Controllers
                 _context.Update(church);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Background), "Churches", new { id = church.Id });
+                return RedirectToAction(nameof(Background), "ChurchManager", new { id = church.Id });
             }
 
             return View(model);
@@ -280,7 +280,7 @@ namespace TempleCMS.Web.Controllers
                 _context.Update(church);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Message), "Churches", new { id = church.Id });
+                return RedirectToAction(nameof(Message), "ChurchManager", new { id = church.Id });
             }
 
             return View(model);
@@ -338,7 +338,7 @@ namespace TempleCMS.Web.Controllers
                 _context.Update(church);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Mission), "Churches", new { id = church.Id });
+                return RedirectToAction(nameof(Mission), "ChurchManager", new { id = church.Id });
             }
 
             return View(model);
